@@ -20,6 +20,7 @@ app.get("/:room", (_req: Request, _res: Response) => {
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId: string, userId: number) => {
     socket.join(roomId);
+    console.log(roomId, userId);
     socket.to(roomId).emit("user-connected", userId);
 
     socket.on("disconnect", () => {
@@ -27,6 +28,8 @@ io.on("connection", (socket) => {
     });
   });
 });
-server.listen(5000, () => {
-  console.log(`server running on port${5000}`);
+
+
+server.listen(5000, ()=>{
+  console.log(`server running`)
 });
